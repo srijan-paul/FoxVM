@@ -1,0 +1,10 @@
+IndentWidth: 4
+
+---
+Language: Cpp
+PointerAlignment: Left
+ColumnLimit: 80
+BreakBeforeBraces: Attach
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: None
+ExperimentalAutoDetectBinPacking: false
