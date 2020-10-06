@@ -8,3 +8,5 @@ BreakBeforeBraces: Attach
 AllowShortBlocksOnASingleLine: Empty
 AllowShortFunctionsOnASingleLine: None
 ExperimentalAutoDetectBinPacking: false
+AlignConsecutiveAssignments: true
+AlignConsecutiveMacros: true
