@@ -1,2 +1,2 @@
 # Fox
-A bytecode VM to learn register VM architechtures. 
+A register based bytecode Virtual Machine.
