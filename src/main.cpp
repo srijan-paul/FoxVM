@@ -80,7 +80,6 @@ inline u16 get_constant_index(u32 i) {
 
 // debug.cpp
 
-#define FOX_DEBUG
 
 void print_iABC(instruction i) {
     printf("%-16s    %03d    %3d    %03d\n", OP2CS(opCode(i)), rA(i), rB(i),
@@ -154,7 +153,7 @@ class VM {
             const instruction instr = fetch();
             const u8 code           = opCode(instr);
 
-#ifdef FOX_DEBUG
+#ifdef FOX_MODE_DEBUG
             printInstruction(instr);
 #endif
 
