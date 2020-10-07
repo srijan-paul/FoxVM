@@ -3,7 +3,6 @@
 #include "fox.hpp"
 #include "opcodes.hpp"
 
-
 namespace fox {
 
 using Value = double;
@@ -16,7 +15,7 @@ enum class ExitCode {
 
 class VM {
   public:
-    VM(CodeBlock& block);
+    VM(CodeBlock* block);
 
     // if runTillEnd is false, exectures only the next instruction and then
     // stops
@@ -31,11 +30,11 @@ class VM {
   private:
     static u8 constexpr NUM_REGISTERS = 32;
     std::array<Value, NUM_REGISTERS> registers;
-    const CodeBlock& block;
+    const CodeBlock* block;
     u32 pc = 0;
 
     inline instruction fetch() {
-        return block.instructions[pc++];
+        return block->instructions[pc++];
     }
 };
 

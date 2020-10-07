@@ -10,7 +10,7 @@
 
 namespace fox {
 
-VM::VM(CodeBlock& block) : block{block} {
+VM::VM(CodeBlock* block) : block{block} {
     for (u8 i = 0; i < NUM_REGISTERS; i++) {
         registers[i] = 0;
     }
@@ -26,23 +26,22 @@ ExitCode VM::run(bool runTillEnd) {
         const u8 code           = opCode(instr);
 
 #ifdef FOX_MODE_DEBUG
-        printInstruction(instr, block);
-        printf("[");
-
-        for (auto value : registers) {
-            printf("%.0f, ", value);
+        for (u8 i = 0; i < NUM_REGISTERS; i++) {
+            auto value = registers[i];
+            if (value)
+                printf("R%d[%.2f]  ", i, value);
         }
-
-        printf("]\n\n");
+        printf("\n\n");
+        printInstruction(instr, *block);
 #endif
 
         switch (code) {
         case Op::halt:
-            return (pc == block.instructions.size()) ? ExitCode::success
-                                                     : ExitCode::error;
+            return (pc == block->instructions.size()) ? ExitCode::success
+                                                      : ExitCode::error;
         case Op::load_const: {
             u8 reg         = rA(instr);
-            registers[reg] = block.constant_pool[get_constant_index(instr)];
+            registers[reg] = block->constant_pool[get_constant_index(instr)];
             break;
         }
         case Op::add: {

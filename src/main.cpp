@@ -75,7 +75,7 @@ void testVM() {
 
     disassembleBlock(block);
 
-    VM vm{block};
+    VM vm{&block};
 
     ExitCode state = vm.step(); // load 5 into R1
 

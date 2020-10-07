@@ -5,20 +5,19 @@
 namespace fox {
 
 static void print_iABC(instruction i) {
-    printf("%-16s    %03d    %03d    %03d\n", OP2CS(opCode(i)), rA(i), rB(i),
+    printf("%-16s    R[%03d]    R[%03d]    R[%03d]\n", OP2CS(opCode(i)), rA(i), rB(i),
            rC(i));
 }
 
 static void print_iAx(instruction i, const CodeBlock& block) {
     u16 index = get_constant_index(i);
-    printf("%-16s    %03d    %03d(%.2f)\n", OP2CS(opCode(i)), rA(i), index,
+    printf("%-16s    R[%03d]    %d(%.2f)\n", OP2CS(opCode(i)), rA(i), index,
            block.constant_pool[index]);
 }
 
 void printInstruction(instruction i, const CodeBlock& block) {
     u8 op = opCode(i);
 
-    // TODO: remove magic numbers
     switch (op) {
     case Op::load_const:
         print_iAx(i, block);
